@@ -1,0 +1,14 @@
+{
+    "$id": "sharepoint_file",
+    "$schema": "https://schema.yext.com/config/km/field/v1",
+    "description": "",
+    "displayName": "Sharepoint File",
+    "group": "NONE",
+    "localization": "PRIMARY_ONLY",
+    "type": {
+      "fileType": {
+        "maxFileSize": 104857600
+      }
+    },
+    "typeId": "file"
+  }

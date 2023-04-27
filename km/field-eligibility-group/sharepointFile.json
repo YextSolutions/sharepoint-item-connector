@@ -1,0 +1,19 @@
+{
+    "$id": "sharepoint_file",
+    "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+    "name": "Sharepoint File",
+    "entityType": "sharepoint_file",
+    "fields": [
+      "externalAuthorizationSource",
+      "externalAuthorizedIdentities",
+      "landingPageUrl",
+      "sharepoint_createdDate",
+      "sharepoint_creatorEmail",
+      "sharepoint_creatorName",
+      "sharepoint_file",
+      "sharepoint_lastModifiedByEmail",
+      "sharepoint_lastModifiedByName",
+      "sharepoint_lastModifiedDate"
+    ],
+    "required": []
+  }

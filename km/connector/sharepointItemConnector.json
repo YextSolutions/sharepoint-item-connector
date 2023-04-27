@@ -1,0 +1,200 @@
+{
+  "$id": "sharepointItem_sharepointItemConnector",
+  "$schema": "https://schema.yext.com/config/km/connector/v3",
+  "displayName": "Sharepoint Drive Connector",
+  "entityType": "sharepoint_file",
+  "source": {
+    "sourceConfig": {
+        "nativeSourceConfig": {
+            "source": "sharepoint",
+            "operation": "fetchRootItems",
+            "inputs": {
+                "driveId": "${{driveId}}",
+                "itemId": "${{itemId}}",
+                "microsoftLinkedAccount": "${{microsoftLinkedAccount}}",
+                "siteId": "${{siteId}}"
+            }
+            }
+        },
+    "selectors": [
+      {
+        "type": "JSON",
+        "header": "Entity ID",
+        "path": "id"
+      },
+      {
+        "type": "JSON",
+        "header": "Name",
+        "path": "name"
+      },
+      {
+        "type": "JSON",
+        "header": "File",
+        "path": "\"@microsoft.graph.downloadUrl\""
+      },
+      {
+        "type": "JSON",
+        "header": "Landing Page URL",
+        "path": "webUrl"
+      },
+      {
+        "type": "JSON",
+        "header": "Creator Name",
+        "path": "createdBy.user.displayName"
+      },
+      {
+        "type": "JSON",
+        "header": "Creator Email",
+        "path": "createdBy.user.email"
+      },
+      {
+        "type": "JSON",
+        "header": "Created Date",
+        "path": "createdDateTime"
+      },
+      {
+        "type": "JSON",
+        "header": "Last Modified Email",
+        "path": "lastModifiedBy.user.email"
+      },
+      {
+        "type": "JSON",
+        "header": "Last Modified By Name",
+        "path": "lastModifiedBy.user.displayName"
+      },
+      {
+        "type": "JSON",
+        "header": "Last Modified Date",
+        "path": "lastModifiedDateTime"
+      },
+      {
+        "type": "JSON",
+        "header": "External Authorized Identities",
+        "path": "permissions.value[].grantedToV2.siteUser.email"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "addColumn": {
+        "newColumnHeader": "External Authorization Source",
+        "columnValue": "sharepoint"
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "Created Date",
+        "newColumnHeader": "Created Date - Formatted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "Last Modified Date",
+        "newColumnHeader": "Last Modified - Formatted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    }
+  ],
+  "mappings": [
+    {
+      "header": "Entity ID",
+      "field": "entityId",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Name",
+      "field": "name",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "File",
+      "field": "sharepoint_file",
+      "subfieldPath": [
+        {
+          "name": "url"
+        }
+      ],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Landing Page URL",
+      "field": "landingPageUrl",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Creator Name",
+      "field": "sharepoint_creatorName",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Creator Email",
+      "field": "sharepoint_creatorEmail",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Created Date - Formatted",
+      "field": "sharepoint_createdDate",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Last Modified Email",
+      "field": "sharepoint_lastModifiedByEmail",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Last Modified By Name",
+      "field": "sharepoint_lastModifiedByName",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "Last Modified - Formatted",
+      "field": "sharepoint_lastModifiedDate",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "External Authorization Source",
+      "field": "externalAuthorizationSource",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    },
+    {
+      "header": "External Authorized Identities",
+      "field": "externalAuthorizedIdentities",
+      "subfieldPath": [],
+      "clearValueIfBlank": false
+    }
+  ],
+  "scheduleConfig": {
+    "customSchedule": {
+      "timeZone": "America/New_York",
+      "startDate": "2023-04-11",
+      "startTime": "09:00",
+      "frequencyType": "DAILY"
+    },
+    "runMode": "DEFAULT"
+  }
+}

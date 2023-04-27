@@ -1,0 +1,12 @@
+{
+    "$id": "sharepoint_createdDate",
+    "$schema": "https://schema.yext.com/config/km/field/v1",
+    "description": "",
+    "displayName": "Created Date",
+    "group": "NONE",
+    "localization": "PRIMARY_ONLY",
+    "type": {
+      "dateType": {}
+    },
+    "typeId": "date"
+  }

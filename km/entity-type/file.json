@@ -1,0 +1,7 @@
+{
+    "$id": "sharepoint_file",
+    "$schema": "https://schema.yext.com/config/km/entity-type/v2",
+    "description": "",
+    "displayName": "File",
+    "pluralDisplayName": "Files"
+  }

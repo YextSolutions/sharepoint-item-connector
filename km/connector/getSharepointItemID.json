@@ -1,0 +1,44 @@
+{
+    "$id": "sharepointItem_getSharepointItemID",
+    "$schema": "https://schema.yext.com/config/km/connector/v3",
+    "displayName": "Get Sharepoint Item ID",
+    "source": {
+      "sourceConfig": {
+        "apiPullConfig": {
+          "requestType": "GET",
+          "url": "https://graph.microsoft.com/v1.0/drives/${{driveId}}/root/children",
+          "authentication": {
+            "oauth": {
+              "linkedAccount": "${{microsoftLinkedAccount}}"
+            }
+          },
+          "headers": {},
+          "queryParams": {},
+          "dataFormat": "JSON"
+        }
+      },
+      "baseSelector": {
+        "type": "JSON",
+        "header": "Entity Container",
+        "path": "value"
+      },
+      "selectors": [
+        {
+          "type": "JSON",
+          "header": "Item Name",
+          "path": "name"
+        },
+        {
+          "type": "JSON",
+          "header": "Item Id",
+          "path": "id"
+        },
+        {
+          "type": "JSON",
+          "header": "Web URL",
+          "path": "webUrl"
+        }
+      ]
+    },
+    "mappings": []
+  }

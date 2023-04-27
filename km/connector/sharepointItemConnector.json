@@ -1,7 +1,7 @@
 {
   "$id": "sharepointItem_sharepointItemConnector",
   "$schema": "https://schema.yext.com/config/km/connector/v3",
-  "displayName": "Sharepoint Drive Connector",
+  "displayName": "Sharepoint Item Connector",
   "entityType": "sharepoint_file",
   "source": {
     "sourceConfig": {

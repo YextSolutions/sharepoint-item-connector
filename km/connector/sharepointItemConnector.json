@@ -7,7 +7,7 @@
     "sourceConfig": {
         "nativeSourceConfig": {
             "source": "sharepoint",
-            "operation": "fetchRootItems",
+            "operation": "fetchItems",
             "inputs": {
                 "driveId": "${{driveId}}",
                 "itemId": "${{itemId}}",

@@ -1,44 +1,48 @@
 {
     "$id": "sharepointItem_getSharepointDriveID",
-    "$schema": "https://schema.yext.com/config/km/connector/v3",
+    "$schema": "https://schema.yext.com/config/km/connector/v4",
     "displayName": "Get Sharepoint Drive ID",
     "source": {
-      "sourceConfig": {
-        "apiPullConfig": {
-          "requestType": "GET",
-          "url": "https://graph.microsoft.com/v1.0/sites/${{siteId}}/drives",
-          "authentication": {
-            "oauth": {
-              "linkedAccount": "${{microsoftLinkedAccount}}"
+        "sourceConfig": {
+            "apiPullConfig": {
+                "requestType": "GET",
+                "url": "https://graph.microsoft.com/v1.0/sites/${{siteId}}/drives",
+                "authentication": {
+                    "oauth": {
+                        "linkedAccount": "${{microsoftLinkedAccount}}"
+                    }
+                },
+                "headers": {},
+                "queryParams": {},
+                "dataFormat": "JSON"
             }
-          },
-          "headers": {},
-          "queryParams": {},
-          "dataFormat": "JSON"
-        }
-      },
-      "baseSelector": {
-        "type": "JSON",
-        "header": "Entity Container",
-        "path": "value"
-      },
-      "selectors": [
-        {
-          "type": "JSON",
-          "header": "Name",
-          "path": "name"
         },
-        {
-          "type": "JSON",
-          "header": "Drive Id",
-          "path": "id"
+        "baseSelector": {
+            "type": "JSON",
+            "header": "Entity Container",
+            "path": "value"
         },
-        {
-          "type": "JSON",
-          "header": "Web URL",
-          "path": "webUrl"
-        }
-      ]
+        "selectors": [
+            {
+                "type": "JSON",
+                "header": "Name",
+                "path": "name"
+            },
+            {
+                "type": "JSON",
+                "header": "Drive Id",
+                "path": "id"
+            },
+            {
+                "type": "JSON",
+                "header": "Web URL",
+                "path": "webUrl"
+            }
+        ]
     },
-    "mappings": []
-  }
+    "mappings": [],
+    "comprehensiveModeConfig": {
+        "comprehensiveSet": "ENTITIES_CREATED_BY_THIS_CONNECTOR",
+        "actionOnMissingEntities": "DELETE"
+    }
+}
